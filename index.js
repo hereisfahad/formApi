@@ -34,11 +34,11 @@ app.post("/register", async (req, res) => {
     console.log('************************');
     console.log(req.body);
     let { firstName, lastName, password, gender, email, phone, country, lat, lng } = req.body;
-    if (!email || !firstName ||
-        !lastName || !password ||
-        !gender || !phone || !country) {
-        return res.status(400).json("incorrect form submission");
-    }
+//     if (!email || !firstName ||
+//         !lastName || !password ||
+//         !gender || !phone || !country) {
+//         return res.status(400).json("incorrect form submission");
+//     }
     const name = firstName + " " + lastName;
     const coords = {
         lat, lng
