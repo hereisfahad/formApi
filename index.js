@@ -53,6 +53,7 @@ app.post("/register", async (req, res) => {
             gender
         });
         await user.save();
+        res.setHeader('Access-Control-Allow-Origin', '*');
         res.send(user);
     } catch (error) {
         res.status(500).json(error.message);
