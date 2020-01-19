@@ -24,7 +24,7 @@ connectDB();
 
 const app = express();
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: "https://formwizard.netlify.com/",
     credentials: true
 }));
 app.use(express.json({ extended: false }));
