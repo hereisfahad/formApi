@@ -24,14 +24,16 @@ connectDB();
 
 const app = express();
 app.use(cors({
-    origin: '*',
+    origin: "https://formwizard.netlify.com/",
     credentials: true
 }));
 app.use(express.json({ extended: false }));
 
 
 app.post("/register", async (req, res) => {
-    let { firstName, lastName, password, gender, email, phone, country, lat, lng } = req.body.user;
+    console.log('************************');
+    console.log(req.body);
+    let { firstName, lastName, password, gender, email, phone, country, lat, lng } = req.body;
     if (!email || !firstName ||
         !lastName || !password ||
         !gender || !phone || !country) {
@@ -44,7 +46,7 @@ app.post("/register", async (req, res) => {
     try {
         let user = await User.findOne({ email });
         if (user) {
-            return res.status(400).json({ errors: [{ msg: "user already exists" }] });
+            return res.json({ errors: [{ msg: "user already exists" }] });
         }
         user = new User({
             name,
@@ -56,7 +58,6 @@ app.post("/register", async (req, res) => {
             gender
         });
         await user.save();
-        res.setHeader('Access-Control-Allow-Origin', '*');
         res.send(user);
     } catch (error) {
         res.status(500).json(error.message);
